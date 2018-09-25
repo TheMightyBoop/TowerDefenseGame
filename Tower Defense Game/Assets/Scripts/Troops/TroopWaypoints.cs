@@ -8,6 +8,19 @@ public class TroopWaypoints : MonoBehaviour {
 
     public static Transform[] points;
 
+    void Awake()
+    {
+        points = new Transform[transform.childCount];
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i] == null)
+            {
+                points[i] = transform.GetChild(i);
+            }
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         points = new Transform[transform.childCount];

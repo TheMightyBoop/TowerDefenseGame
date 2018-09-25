@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.AI;
 
 public class TroopMovement : MonoBehaviour
 {
@@ -12,26 +10,22 @@ public class TroopMovement : MonoBehaviour
 
     private Troop troop;
 
-    public NavMeshAgent agent;
-
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         troop = GetComponent<Troop>();
         target = TroopWaypoints.points[waypointIndex];
-        agent.speed = troop.speed;
     }
 
     void Update()
     {
-        if(target != null)
+        Vector3 dir = target.position - transform.position;
+        if (target != null)
         {
             MoveTroop();
-            FaceTarget();
+            LockOnTarget(dir);
+            CheckInCamp();
         }
         
-        CheckInCamp();
-
         if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp == true)
         {
             StartCoroutine(FollowPoints());
@@ -42,27 +36,20 @@ public class TroopMovement : MonoBehaviour
 
     void MoveTroop()
     {
-        agent.SetDestination(target.position);
+        troop.transform.position = Vector3.MoveTowards(troop.transform.position, target.position, troop.speed *Time.deltaTime);
     }
 
-    void FaceTarget()
+    void LockOnTarget(Vector3 dir)
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
-
-    public void FollowTarget(TroopWaypoints newTarget)
-    {
-        agent.stoppingDistance = newTarget.radius * .8f;
-        agent.updateRotation = false;
-
-        target = newTarget.transform;
+        //Target lock on, so enemies face where they are going
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(troop.transform.rotation, lookRotation, Time.deltaTime * troop.speed).eulerAngles;
+        troop.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     void GetNextWayPoint()
     {
-        if (waypointIndex >= TroopWaypoints.points.Length - 2)
+        if (waypointIndex >= TroopWaypoints.points.Length - 3)
         {
             EndPath();
             return;
@@ -77,12 +64,12 @@ public class TroopMovement : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
-            for (int i = 0; i < TroopWaypoints.points.Length - 1; i++)
+            for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
             {
                 GetNextWayPoint();
                 MoveTroop();
                 Debug.Log(waypointIndex);
-                yield return new WaitUntil(() => agent.transform.position == target.position);
+                yield return new WaitUntil(() => troop.transform.position == target.position);
             }
         }
     }
@@ -101,20 +88,11 @@ public class TroopMovement : MonoBehaviour
     
     void CheckInCamp()
     {
-        if (!agent.pathPending)
+        if (troop.transform.position == TroopWaypoints.points[0].position)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance && troop.isInCamp == false)
-            {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    troop.isInCamp = true;
-                    PlayerStats.TroopsInCamp++;
-                }
-            }
-        }
-        else
-        {
-            troop.isInCamp = false;
+            troop.isInCamp = true;
+            PlayerStats.TroopsInCamp++;
+            return;
         }
     }
 }
