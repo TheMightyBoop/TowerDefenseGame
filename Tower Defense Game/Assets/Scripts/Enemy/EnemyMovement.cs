@@ -24,6 +24,8 @@ public class EnemyMovement : MonoBehaviour {
     void Update()
     {
         Vector3 dir = target.position - transform.position;
+        float distance = Vector3.Distance(target.position, transform.position);
+
         transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
 
         if (enemy.transform.position != target.position)

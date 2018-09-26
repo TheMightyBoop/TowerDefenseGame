@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class TroopMovement : MonoBehaviour
 {
-
     private Transform target;
+    private Enemy targetEnemy;
     
+    [HideInInspector]
     public int waypointIndex = 0;
 
     private Troop troop;
+
+    public string enemyTag = "Enemy";
 
     void Start()
     {
@@ -16,19 +19,48 @@ public class TroopMovement : MonoBehaviour
         target = TroopWaypoints.points[waypointIndex];
     }
 
+    void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(troop.transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+        }
+
+        if (nearestEnemy != null && shortestDistance <= troop.range)
+        {
+            target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+        }
+        else
+        {
+            target = null;
+        }
+    }
+
     void Update()
     {
-        Vector3 dir = target.position - transform.position;
         if (target != null)
         {
+            Vector3 dir = target.position - transform.position;
+            
             MoveTroop();
             LockOnTarget(dir);
             CheckInCamp();
+            return;
         }
         
         if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp == true)
         {
-            StartCoroutine(FollowPoints());
+            Attack();
         }
 
         troop.speed = troop.startSpeed;
@@ -56,15 +88,16 @@ public class TroopMovement : MonoBehaviour
         }
 
         waypointIndex++;
-        target = TroopWaypoints.points[waypointIndex];
-        
+        target = TroopWaypoints.points[waypointIndex]; 
     }
 
     IEnumerator FollowPoints()
     {
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        target = TroopWaypoints.points[waypointIndex];
+
+        if (Vector3.Distance(troop.transform.position, target.position) <= 0.2f)
         {
-            for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
+            for (int i = 1; i < TroopWaypoints.points.Length - 1; i++)
             {
                 GetNextWayPoint();
                 MoveTroop();
@@ -82,8 +115,8 @@ public class TroopMovement : MonoBehaviour
 
     public void Attack()
     {
-        StartCoroutine(FollowPoints());
         PlayerStats.TroopsInCamp = 0;
+        StartCoroutine(FollowPoints());
     }
     
     void CheckInCamp()
@@ -92,6 +125,7 @@ public class TroopMovement : MonoBehaviour
         {
             troop.isInCamp = true;
             PlayerStats.TroopsInCamp++;
+            target = null;
             return;
         }
     }
