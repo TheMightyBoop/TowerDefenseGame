@@ -24,7 +24,7 @@ public class Troop : MonoBehaviour {
     public Image healthBar;
 
     private bool isDead = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isInCamp = false;
 
     void Start()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TroopWaypoints : MonoBehaviour {
 
-    public float radius = 5f;
+    public static float radius = 2f;
+    public float RADIUS = 3f;
 
     public static Transform[] points;
 
@@ -19,6 +20,11 @@ public class TroopWaypoints : MonoBehaviour {
                 points[i] = transform.GetChild(i);
             }
         }
+    }
+
+    void Start()
+    {
+        radius = RADIUS;
     }
 
     void OnDrawGizmosSelected()
