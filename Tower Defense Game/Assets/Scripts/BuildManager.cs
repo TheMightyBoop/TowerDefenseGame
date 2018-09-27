@@ -59,6 +59,13 @@ public class BuildManager : MonoBehaviour {
             campShopUI.footSoldierTowerSelected = false;
             DeselectNode();
         }
+
+        if (campShopUI.footSoldierTower_NavMeshSelected)
+        {
+            selectedNode.BuildTurret(turretToBuild);
+            campShopUI.footSoldierTower_NavMeshSelected = false;
+            DeselectNode();
+        }
     }
 
     public void SelectNodeUpgrade(Node node)

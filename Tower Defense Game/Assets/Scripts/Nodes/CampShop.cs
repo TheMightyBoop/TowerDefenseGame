@@ -6,9 +6,12 @@ using UnityEngine;
 public class CampShop : MonoBehaviour {
 
     public TurretBlueprint footSoldierTower;
+    public TurretBlueprint footSoldierTower_NavMesh;
 
     [HideInInspector]
     public bool footSoldierTowerSelected = false;
+    [HideInInspector]
+    public bool footSoldierTower_NavMeshSelected = false;
 
     BuildManager buildManager;
 
@@ -30,6 +33,12 @@ public class CampShop : MonoBehaviour {
     {
         buildManager.SelectTurretToBuild(footSoldierTower);
         footSoldierTowerSelected = true;
+    }
+
+    public void SelectFootSoldierTower_NavMesh()
+    {
+        buildManager.SelectTurretToBuild(footSoldierTower_NavMesh);
+        footSoldierTower_NavMeshSelected = true;
     }
 
     public void SetTarget(Node _target)

@@ -5068,7 +5068,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1850454359}
-        m_MethodName: SelectFootSoldierTower
+        m_MethodName: SelectFootSoldierTower_NavMesh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8695,7 +8695,14 @@ MonoBehaviour:
     upgradedPrefab: {fileID: 1948779375102336, guid: 8f607468f7ad42743b797745bbf0b8cd,
       type: 2}
     upgradeCost: 50
+  footSoldierTower_NavMesh:
+    prefab: {fileID: 1948779375102336, guid: 0180370aca995a344ac7d72b02c6caab, type: 2}
+    cost: 100
+    upgradedPrefab: {fileID: 1948779375102336, guid: 8f607468f7ad42743b797745bbf0b8cd,
+      type: 2}
+    upgradeCost: 50
   footSoldierTowerSelected: 0
+  footSoldierTower_NavMeshSelected: 0
   ui: {fileID: 803267635}
   turret: {fileID: 0}
   turretBlueprint:

@@ -1582,7 +1582,7 @@ Prefab:
     - target: {fileID: 114923991277849892, guid: 9002a0ac65cee7f4ca5ebed5e5633710,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level1
+      value: Level0
       objectReference: {fileID: 0}
     - target: {fileID: 114398052921884102, guid: 9002a0ac65cee7f4ca5ebed5e5633710,
         type: 2}
