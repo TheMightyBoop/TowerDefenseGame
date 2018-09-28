@@ -7,12 +7,12 @@ public class TroopMovement_NavMesh : MonoBehaviour
 {
     private Transform target;
 
-    //[HideInInspector]
+    [HideInInspector]
     public int waypointIndex = 0;
 
     private Troop troop;
 
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     void Start()
     {
@@ -43,6 +43,7 @@ public class TroopMovement_NavMesh : MonoBehaviour
 
     void MoveTroop()
     {
+        agent.isStopped = false;
         agent.SetDestination(target.position);
     }
 
@@ -52,13 +53,6 @@ public class TroopMovement_NavMesh : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(troop.transform.rotation, lookRotation, Time.deltaTime * troop.speed).eulerAngles;
         troop.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-    }
-
-    void FaceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     void GetNextWayPoint()
@@ -77,21 +71,14 @@ public class TroopMovement_NavMesh : MonoBehaviour
     {
         target = TroopWaypoints.points[waypointIndex];
 
-        if (!agent.pathPending)
+        if (PathChecker())
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
-                    {
-                        GetNextWayPoint();
-                        MoveTroop();
-                        Debug.Log(waypointIndex);
-                        //yield return new WaitForSeconds(3f);
-                        yield return new WaitUntil(() => Vector3.Distance(troop.transform.position, target.position) <= TroopWaypoints.radius);
-                    }
-                }
+                GetNextWayPoint();
+                MoveTroop();
+                Debug.Log(waypointIndex);
+                yield return new WaitUntil(() => Vector3.Distance(troop.transform.position, target.position) <= TroopWaypoints.radius);
             }
         }
     }
@@ -108,12 +95,33 @@ public class TroopMovement_NavMesh : MonoBehaviour
         PlayerStats.TroopsInCamp = 0;
     }
 
+    public bool PathChecker()
+    {
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                agent.velocity = Vector3.zero; //Prevent sliding
+                agent.isStopped = true;
+
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        } 
+        return false;
+    }
+
     void CheckInCamp()
     {
         if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance && troop.isInCamp == false && waypointIndex == 0)
             {
+                agent.velocity = Vector3.zero; //Prevent sliding
+                agent.isStopped = true;
+
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     troop.isInCamp = true;
