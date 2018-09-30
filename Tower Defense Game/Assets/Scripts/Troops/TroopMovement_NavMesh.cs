@@ -14,6 +14,8 @@ public class TroopMovement_NavMesh : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    Vector3 dir;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -24,9 +26,9 @@ public class TroopMovement_NavMesh : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        if (target != null && target == TroopWaypoints.points[waypointIndex])
         {
-            Vector3 dir = target.position - transform.position;
+            dir = target.position - transform.position;
 
             MoveTroop();
             LockOnTarget(dir);
@@ -75,8 +77,11 @@ public class TroopMovement_NavMesh : MonoBehaviour
         {
             for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
             {
+                dir = target.position - transform.position;
+
                 GetNextWayPoint();
                 MoveTroop();
+                LockOnTarget(dir);
                 Debug.Log(waypointIndex);
                 yield return new WaitUntil(() => Vector3.Distance(troop.transform.position, target.position) <= TroopWaypoints.radius);
             }
@@ -91,6 +96,7 @@ public class TroopMovement_NavMesh : MonoBehaviour
 
     public void Attack()
     {
+        troop.isInCamp = false;
         StartCoroutine(FollowPoints());
         PlayerStats.TroopsInCamp = 0;
     }
@@ -127,11 +133,11 @@ public class TroopMovement_NavMesh : MonoBehaviour
                     troop.isInCamp = true;
                     PlayerStats.TroopsInCamp++;
                     target = null;
+                    waypointIndex = 1;
                     return;
                 }
             }
-        }
-        else
+        } else
         {
             troop.isInCamp = false;
         }

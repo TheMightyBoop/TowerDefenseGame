@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMoney: 99999
   startLives: 50
-  MAX_TROOPS: 20
+  MAX_TROOPS: 15
 --- !u!114 &199866389
 MonoBehaviour:
   m_ObjectHideFlags: 0

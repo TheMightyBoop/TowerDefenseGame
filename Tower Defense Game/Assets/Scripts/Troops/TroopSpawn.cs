@@ -13,24 +13,22 @@ public class TroopSpawn : MonoBehaviour {
 
     void Update()
     {
-        if (PlayerStats.TroopsInCamp == PlayerStats.MaxTroops)
+        if (PlayerStats.TroopsInCamp >= PlayerStats.MaxTroops)
         {
-            this.enabled = false;
+            StopCoroutine(SpawnTroop(troop));
         }
         else
         {
-            this.enabled = true;
-        }
+            while (cooldown <= 0f)
+            {
+                StartCoroutine(SpawnTroop(troop));
+                cooldown = rate;
+                return;
+            }
 
-        while (cooldown <= 0f)
-        {
-            StartCoroutine(SpawnTroop(troop));
-            cooldown = rate;
-            return;
+            cooldown -= Time.deltaTime;
+            cooldown = Mathf.Clamp(cooldown, 0f, Mathf.Infinity);
         }
-
-        cooldown -= Time.deltaTime;
-        cooldown = Mathf.Clamp(cooldown, 0f, Mathf.Infinity);
     }
     
 
