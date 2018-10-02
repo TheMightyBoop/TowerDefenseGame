@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour {
 
     public int worth = 50;
     public int lives = 1;
+    public bool isEngaged = false;
 
     public GameObject deathEffect;
 
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour {
     public Image healthBar;
 
     private bool isDead = false;
+    
 
     void Start()
     {

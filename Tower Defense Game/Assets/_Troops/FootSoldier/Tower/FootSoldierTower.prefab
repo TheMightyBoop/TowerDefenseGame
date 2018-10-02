@@ -138,4 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rate: 3
   spawnPoint: {fileID: 4253943161539518}
-  troop: {fileID: 1123908357869726, guid: 10c71385557c28d4f832cb8255ea3d83, type: 2}
+  troop: {fileID: 1540943740740740, guid: 9ce28208f90141d44a5cada6fd3b39b0, type: 2}

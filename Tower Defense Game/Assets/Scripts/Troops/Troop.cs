@@ -13,6 +13,8 @@ public class Troop : MonoBehaviour {
     public float startHealth = 100;
     private float health;
 
+    public float damage = 10f;
+
     public float range = 15f;
 
     public int worth = 50;

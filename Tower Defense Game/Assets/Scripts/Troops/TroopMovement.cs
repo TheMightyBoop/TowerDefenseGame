@@ -1,37 +1,41 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class TroopMovement : MonoBehaviour
 {
     private Transform target;
-    private Enemy targetEnemy;
-    
+
     [HideInInspector]
     public int waypointIndex = 0;
 
     private Troop troop;
 
-    public string enemyTag = "Enemy";
+    private NavMeshAgent agent;
+
+    Vector3 dir;
 
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         troop = GetComponent<Troop>();
         target = TroopWaypoints.points[waypointIndex];
+        agent.speed = troop.speed;
     }
 
     void Update()
     {
-        if (target != null)
+        if (target != null && target == TroopWaypoints.points[waypointIndex])
         {
-            Vector3 dir = target.position - transform.position;
-            
+            dir = target.position - transform.position;
+
             MoveTroop();
             LockOnTarget(dir);
             CheckInCamp();
-            return;
         }
-        
-        if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp == true)
+
+        if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp)
         {
             Attack();
         }
@@ -41,7 +45,8 @@ public class TroopMovement : MonoBehaviour
 
     void MoveTroop()
     {
-        troop.transform.position = Vector3.MoveTowards(troop.transform.position, target.position, troop.speed *Time.deltaTime);
+        agent.isStopped = false;
+        agent.SetDestination(target.position);
     }
 
     void LockOnTarget(Vector3 dir)
@@ -61,21 +66,24 @@ public class TroopMovement : MonoBehaviour
         }
 
         waypointIndex++;
-        target = TroopWaypoints.points[waypointIndex]; 
+        target = TroopWaypoints.points[waypointIndex];
     }
 
-    IEnumerator FollowPoints()
+    public IEnumerator FollowPoints()
     {
         target = TroopWaypoints.points[waypointIndex];
 
-        if (Vector3.Distance(troop.transform.position, target.position) <= 0.2f)
+        if (PathChecker())
         {
-            for (int i = 1; i < TroopWaypoints.points.Length - 1; i++)
+            for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
             {
+                dir = target.position - transform.position;
+
                 GetNextWayPoint();
                 MoveTroop();
+                LockOnTarget(dir);
                 Debug.Log(waypointIndex);
-                yield return new WaitUntil(() => troop.transform.position == target.position);
+                yield return new WaitUntil(() => Vector3.Distance(troop.transform.position, target.position) <= TroopWaypoints.radius);
             }
         }
     }
@@ -88,18 +96,50 @@ public class TroopMovement : MonoBehaviour
 
     public void Attack()
     {
-        PlayerStats.TroopsInCamp = 0;
+        troop.isInCamp = false;
         StartCoroutine(FollowPoints());
+        PlayerStats.TroopsInCamp = 0;
     }
-    
+
+    public bool PathChecker()
+    {
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                agent.velocity = Vector3.zero; //Prevent sliding
+                agent.isStopped = true;
+
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        } 
+        return false;
+    }
+
     void CheckInCamp()
     {
-        if (troop.transform.position == TroopWaypoints.points[0].position)
+        if (!agent.pathPending)
         {
-            troop.isInCamp = true;
-            PlayerStats.TroopsInCamp++;
-            target = null;
-            return;
+            if (agent.remainingDistance <= agent.stoppingDistance && troop.isInCamp == false && waypointIndex == 0)
+            {
+                agent.velocity = Vector3.zero; //Prevent sliding
+                agent.isStopped = true;
+
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    troop.isInCamp = true;
+                    PlayerStats.TroopsInCamp++;
+                    target = null;
+                    waypointIndex = 1;
+                    return;
+                }
+            }
+        } else
+        {
+            troop.isInCamp = false;
         }
     }
 }
