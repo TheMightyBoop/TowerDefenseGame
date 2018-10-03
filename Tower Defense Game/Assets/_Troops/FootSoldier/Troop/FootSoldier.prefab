@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 195688679653841012}
   m_Layer: 0
   m_Name: FootSoldier
-  m_TagString: Untagged
+  m_TagString: Troop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -454,6 +454,7 @@ MonoBehaviour:
   range: 2
   worth: 50
   lives: 1
+  isEngaged: 0
   deathEffect: {fileID: 1242990457557276, guid: ae01079f3655ea041a3c65ae44623818,
     type: 2}
   healthBar: {fileID: 114165333823691540}

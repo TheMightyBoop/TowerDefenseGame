@@ -52,18 +52,23 @@ public class TroopCombat : MonoBehaviour {
             target = nearestEnemy.transform;
             targetEnemy = nearestEnemy.GetComponent<Enemy>();
 
+            troopMovement.enabled = false;
             agent.SetDestination(target.position);
 
             if (shortestDistance <= agent.stoppingDistance)
             {
                 Troop troop = GetComponent<Troop>();
-                if (troop != null)
+                if (troop != null && target != null)
                 {
                     Attack(targetEnemy);
                 }
 
                 FaceTarget();
             }
+        }
+        else
+        {
+            troopMovement.enabled = true;
         }
 	}
 

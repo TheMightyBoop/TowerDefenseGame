@@ -8,6 +8,7 @@ TagManager:
   - Camp
   - Defense
   - Waiting Area
+  - Troop
   layers:
   - Default
   - TransparentFX

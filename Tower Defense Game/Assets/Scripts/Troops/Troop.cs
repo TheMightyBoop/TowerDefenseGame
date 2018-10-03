@@ -20,6 +20,8 @@ public class Troop : MonoBehaviour {
     public int worth = 50;
     public int lives = 1;
 
+    public bool isEngaged = false;
+
     public GameObject deathEffect;
 
     [Header("Unity Stuff")]
