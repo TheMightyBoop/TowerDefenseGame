@@ -7,7 +7,7 @@ public class TroopWaypoints : MonoBehaviour {
     public static float radius = 2f;
     public float RADIUS = 3f;
 
-    public static Transform[] points;
+    public Transform[] points;
 
     void Awake()
     {

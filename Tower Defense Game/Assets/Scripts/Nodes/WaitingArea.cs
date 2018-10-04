@@ -12,11 +12,6 @@ public class WaitingArea : MonoBehaviour {
         point = transform;
     }
 
-    public virtual void Interact()
-    {
-        Debug.Log("Interacting with " + transform.name);
-    }
-
     void OnDrawGizmosSelected()
     {
         if (point == null)

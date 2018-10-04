@@ -7,8 +7,9 @@ public class TroopMovement : MonoBehaviour
 {
     private Transform target;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int waypointIndex = 0;
+    public int pathIndex = 0;
 
     private Troop troop;
 
@@ -20,13 +21,13 @@ public class TroopMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         troop = GetComponent<Troop>();
-        target = TroopWaypoints.points[waypointIndex];
+        target = WaitingArea.point;
         agent.speed = troop.speed;
     }
 
     void Update()
     {
-        if (target != null && target == TroopWaypoints.points[waypointIndex])
+        if (target != null && target == WaitingArea.point)
         {
             dir = target.position - transform.position;
 
@@ -59,23 +60,23 @@ public class TroopMovement : MonoBehaviour
 
     void GetNextWayPoint()
     {
-        if (waypointIndex >= TroopWaypoints.points.Length - 3)
+        if (waypointIndex >= Paths.paths[pathIndex].points.Length - 1)
         {
             EndPath();
             return;
         }
 
         waypointIndex++;
-        target = TroopWaypoints.points[waypointIndex];
+        target = Paths.paths[pathIndex].points[waypointIndex];
     }
 
     public IEnumerator FollowPoints()
     {
-        target = TroopWaypoints.points[waypointIndex];
+        target = Paths.paths[pathIndex].points[waypointIndex];
 
         if (PathChecker())
         {
-            for (int i = 0; i < TroopWaypoints.points.Length - 2; i++)
+            for (int i = 0; i < Paths.paths[pathIndex].points.Length; i++)
             {
                 dir = target.position - transform.position;
 
@@ -96,9 +97,15 @@ public class TroopMovement : MonoBehaviour
 
     public void Attack()
     {
+        GetPath();
         troop.isInCamp = false;
         StartCoroutine(FollowPoints());
         PlayerStats.TroopsInCamp = 0;
+    }
+
+    void GetPath()
+    {
+
     }
 
     public bool PathChecker()
@@ -133,7 +140,6 @@ public class TroopMovement : MonoBehaviour
                     troop.isInCamp = true;
                     PlayerStats.TroopsInCamp++;
                     target = null;
-                    waypointIndex = 1;
                     return;
                 }
             }
