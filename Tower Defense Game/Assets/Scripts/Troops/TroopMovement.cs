@@ -105,7 +105,7 @@ public class TroopMovement : MonoBehaviour
 
     void GetPath()
     {
-
+        pathIndex = PlayerStats.PathIndex;
     }
 
     public bool PathChecker()

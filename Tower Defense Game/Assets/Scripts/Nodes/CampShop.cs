@@ -10,7 +10,7 @@ public class CampShop : MonoBehaviour {
     [HideInInspector]
     public bool footSoldierTowerSelected = false;
 
-    BuildManager buildManager;
+    public BuildManager buildManager;
 
     public GameObject ui;
 
@@ -20,11 +20,6 @@ public class CampShop : MonoBehaviour {
     public GameObject turret;
     [HideInInspector]
     public TurretBlueprint turretBlueprint;
-
-    void Start()
-    {
-        buildManager = BuildManager.instance;
-    }
 
     public void SelectFootSoldierTower()
     {

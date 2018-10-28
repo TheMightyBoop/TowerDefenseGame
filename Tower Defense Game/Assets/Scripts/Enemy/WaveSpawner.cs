@@ -30,12 +30,6 @@ public class WaveSpawner : MonoBehaviour {
             return;
         }
 
-        if (waveNumber == waves.Length)
-        {
-            gameManager.WinLevel();
-            this.enabled = false;
-        }
-
         if ((countdown <= 0f || (Input.GetKeyDown(KeyCode.E))) && waveNumber != 0)
         {
             StartCoroutine(SpawnWave());

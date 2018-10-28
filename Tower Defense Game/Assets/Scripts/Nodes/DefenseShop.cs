@@ -16,7 +16,7 @@ public class DefenseShop : MonoBehaviour {
     [HideInInspector]
     public bool laserBeamerSelected = false;
 
-    BuildManager buildManager;
+    public BuildManager buildManager;
 
     public GameObject ui;
 
@@ -26,11 +26,6 @@ public class DefenseShop : MonoBehaviour {
     public GameObject turret;
     [HideInInspector]
     public TurretBlueprint turretBlueprint;
-
-    void Start()
-    {
-        buildManager = BuildManager.instance;
-    }
 
     public void SelectStandardTurret()
     {

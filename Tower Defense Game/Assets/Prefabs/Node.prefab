@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 65124151103954048}
   - component: {fileID: 23575729580427798}
   - component: {fileID: 114621849241676028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node
-  m_TagString: Untagged
+  m_TagString: Defense
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.004, y: 0, z: -4.367}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.85, y: 0, z: -1.75}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -107,7 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239a2914715715944a7dfab7075ec8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 0}
+  hoverColor: {r: 0.33823532, g: 0.28012472, b: 0.037305363, a: 0}
   notEnoughMoneyColor: {r: 0.8161765, g: 0.21004543, b: 0.21004543, a: 0}
-  positionOffset: {x: 0, y: 0.5, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
   turret: {fileID: 0}
+  turretBlueprint:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  isUpgraded: 0
+  buildManager: {fileID: 0}

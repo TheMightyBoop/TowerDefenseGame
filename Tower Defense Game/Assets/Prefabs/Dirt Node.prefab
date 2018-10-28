@@ -117,3 +117,5 @@ MonoBehaviour:
     upgradedPrefab: {fileID: 0}
     upgradeCost: 0
   isUpgraded: 0
+  buildManager: {fileID: 114326997949253964, guid: d4431c7e5353ed847ac5ac555b3aab9f,
+    type: 2}

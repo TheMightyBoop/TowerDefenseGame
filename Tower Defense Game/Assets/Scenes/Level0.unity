@@ -1337,7 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1940615275}
-  comepleteLevelUI: {fileID: 1089623319}
 --- !u!114 &199866388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7658,7 +7657,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.2
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: ef47eee8271483a44b0a8e0ce62f7952, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d8ddec74f62d83a46acec690b361b3ff, type: 2}
 --- !u!4 &1595092308
 Transform:
   m_ObjectHideFlags: 0

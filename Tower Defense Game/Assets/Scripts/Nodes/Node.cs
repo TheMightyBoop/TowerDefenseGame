@@ -20,19 +20,22 @@ public class Node : MonoBehaviour {
     private Renderer rend;
     private Color startColor;
 
-    BuildManager buildManager;
+    public BuildManager buildManager;
     
     void Start()
     {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
-
-        buildManager = BuildManager.instance;
     }
 
     public Vector3 GetBuildPosition()
     {
         return transform.position + positionOffset;
+    }
+
+    public Quaternion GetBuildRotation()
+    {
+        return transform.rotation;
     }
 
     void OnMouseDown()

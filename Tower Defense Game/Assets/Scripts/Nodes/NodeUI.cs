@@ -14,6 +14,8 @@ public class NodeUI : MonoBehaviour {
 
     private Node target;
 
+    public BuildManager buildManager;
+
     public void SetTarget(Node _target)
     {
         target = _target;
@@ -43,13 +45,13 @@ public class NodeUI : MonoBehaviour {
     public void Upgrade()
     {
         target.UpgradeTurret();
-        BuildManager.instance.DeselectNode();
+        buildManager.DeselectNode();
     }
 
     public void Sell()
     {
         target.SellTurret();
         target.isUpgraded = false;
-        BuildManager.instance.DeselectNode();
+        buildManager.DeselectNode();
     }
 }
