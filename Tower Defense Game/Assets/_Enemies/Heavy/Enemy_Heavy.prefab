@@ -184,8 +184,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840806920060614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.79, y: 2.4, z: -72.99}
-  m_LocalScale: {x: 2.081572, y: 2.081572, z: 2.081572}
+  m_LocalPosition: {x: -3.7, y: 2.3, z: 15.3978615}
+  m_LocalScale: {x: 2.9442317, y: 2.9442322, z: 2.9442322}
   m_Children:
   - {fileID: 224524606443584720}
   - {fileID: 4120811701675448}
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 7
   speed: 30
-  startHealth: 350
+  startHealth: 500
   range: 2.5
   worth: 140
   lives: 3

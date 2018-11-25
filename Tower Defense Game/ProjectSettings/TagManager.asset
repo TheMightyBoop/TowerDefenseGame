@@ -9,6 +9,8 @@ TagManager:
   - Defense
   - Waiting Area
   - Troop
+  - Defense_Player1
+  - Defense_Player2
   layers:
   - Default
   - TransparentFX

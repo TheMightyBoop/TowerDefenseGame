@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 23401286197867856}
   - component: {fileID: 114504090565002608}
   - component: {fileID: 114257562451752786}
+  - component: {fileID: 195925212942181858}
   m_Layer: 0
   m_Name: Enemy_Simple
   m_TagString: Enemy
@@ -349,12 +350,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e6fb8ae54014e49849a26bdd6a383c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 20
+  startSpeed: 15
   speed: 30
   startHealth: 100
   range: 2.2
   worth: 50
   lives: 1
+  isEngaged: 0
   deathEffect: {fileID: 1242990457557276, guid: 8ffa388a62dd72a4aba4765e59b5f482,
     type: 2}
   healthBar: {fileID: 114915210543012492}
@@ -469,6 +471,27 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195925212942181858
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840806920060614}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222045569346755376
 CanvasRenderer:
   m_ObjectHideFlags: 1
