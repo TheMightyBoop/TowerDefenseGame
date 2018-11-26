@@ -108,8 +108,18 @@ public class Turret : MonoBehaviour {
                     fireCountdown = 1f / fireRate;
                 }
             }
+        }
+    }
 
+    void FixedUpdate()
+    {
+        //fireCountdown is calculated in FixedUpdate to keep it continuous. Putting it in Update made it only count down when targeting an enemy
+        if (fireCountdown > 0f)
+        {
             fireCountdown -= Time.deltaTime;
+        } else
+        {
+            return;
         }
     }
 
