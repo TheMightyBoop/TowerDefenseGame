@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1685529621056352}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1685529621056352
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4552277262065722}
   - component: {fileID: 33975631178641616}
@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114621849241676028}
   m_Layer: 9
   m_Name: Node
-  m_TagString: Defense
+  m_TagString: Defense_Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,11 +33,11 @@ GameObject:
 --- !u!4 &4552277262065722
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.19, y: 0, z: -2.0300002}
+  m_LocalPosition: {x: 1.7699999, y: 0, z: 0.34999976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ Transform:
 --- !u!23 &23575729580427798
 MeshRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_Enabled: 1
@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 08804d01fe7ab40498f8b503cb922076, type: 2}
   m_StaticBatchInfo:
@@ -80,14 +81,14 @@ MeshRenderer:
 --- !u!33 &33975631178641616
 MeshFilter:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65124151103954048
 BoxCollider:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_Material: {fileID: 0}
@@ -99,7 +100,7 @@ BoxCollider:
 --- !u!114 &114621849241676028
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685529621056352}
   m_Enabled: 1
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.33823532, g: 0.28012472, b: 0.037305363, a: 0}
   notEnoughMoneyColor: {r: 0.8161765, g: 0.21004543, b: 0.21004543, a: 0}
-  positionOffset: {x: 0, y: 1.8, z: 0}
+  positionOffset: {x: 0, y: 2.1, z: 0}
   turret: {fileID: 0}
   turretBlueprint:
     prefab: {fileID: 0}

@@ -1690,11 +1690,6 @@ GameObject:
   - component: {fileID: 157306248}
   - component: {fileID: 157306247}
   - component: {fileID: 157306246}
-  - component: {fileID: 157306245}
-  - component: {fileID: 157306244}
-  - component: {fileID: 157306243}
-  - component: {fileID: 157306242}
-  - component: {fileID: 157306241}
   m_Layer: 0
   m_Name: FootSoldier_Cap (1)
   m_TagString: Troop
@@ -1719,97 +1714,6 @@ Transform:
   m_Father: {fileID: 1697747823}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!195 &157306241
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 195688679653841012, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157306239}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.49999997
-  m_Speed: 3.5
-  m_Acceleration: 30
-  avoidancePriority: 50
-  m_AngularSpeed: 1200
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.9999999
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!54 &157306242
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 54683189093028876, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157306239}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &157306243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114175347405662504, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157306239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a25835a8a4f2114b9c2ddff3e2c4ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypointIndex: 0
-  pathIndex: 0
---- !u!114 &157306244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114011399843537174, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157306239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d258c034402d2443804752ef1596aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSpeed: 1
-  attackDelay: 0.6
-  enemyTag: Enemy
---- !u!114 &157306245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114193589535116190, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157306239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc246925ffda2b7419c7cd59f5b7fb82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 10
-  speed: 0
-  startHealth: 100
-  damage: 20
-  range: 2
-  worth: 50
-  lives: 1
-  isEngaged: 0
-  deathEffect: {fileID: 1242990457557276, guid: ae01079f3655ea041a3c65ae44623818,
-    type: 2}
-  healthBar: {fileID: 0}
-  isInCamp: 0
 --- !u!23 &157306246
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3149,7 +3053,7 @@ GameObject:
   - component: {fileID: 298050470}
   - component: {fileID: 298050469}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ButtonCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3415,7 +3319,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-313424
+  m_Name: pb_Mesh24742
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -4422,7 +4326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTIONS
+  m_Text: OPTIONS (COMING SOON)
 --- !u!222 &480705938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8469,8 +8373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73.5, y: -195.2}
-  m_SizeDelta: {x: 142.6, y: 49.5}
+  m_AnchoredPosition: {x: 186.03, y: -195.2}
+  m_SizeDelta: {x: 367.66, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980608013
 MonoBehaviour:
@@ -8506,22 +8410,11 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 980608014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2111960986}
-        m_MethodName: Options
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &980608014
@@ -10174,7 +10067,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-662166
+  m_Name: pb_Mesh24366
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -10378,11 +10271,6 @@ GameObject:
   - component: {fileID: 1264945930}
   - component: {fileID: 1264945929}
   - component: {fileID: 1264945928}
-  - component: {fileID: 1264945927}
-  - component: {fileID: 1264945926}
-  - component: {fileID: 1264945925}
-  - component: {fileID: 1264945924}
-  - component: {fileID: 1264945923}
   m_Layer: 0
   m_Name: FootSoldier_Cap
   m_TagString: Troop
@@ -10407,97 +10295,6 @@ Transform:
   m_Father: {fileID: 1697747823}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!195 &1264945923
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 195688679653841012, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1264945921}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.49999997
-  m_Speed: 3.5
-  m_Acceleration: 30
-  avoidancePriority: 50
-  m_AngularSpeed: 1200
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.9999999
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!54 &1264945924
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 54683189093028876, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1264945921}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1264945925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114175347405662504, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1264945921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a25835a8a4f2114b9c2ddff3e2c4ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypointIndex: 0
-  pathIndex: 0
---- !u!114 &1264945926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114011399843537174, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1264945921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d258c034402d2443804752ef1596aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSpeed: 1
-  attackDelay: 0.6
-  enemyTag: Enemy
---- !u!114 &1264945927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114193589535116190, guid: 9ce28208f90141d44a5cada6fd3b39b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1264945921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc246925ffda2b7419c7cd59f5b7fb82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 10
-  speed: 0
-  startHealth: 100
-  damage: 20
-  range: 2
-  worth: 50
-  lives: 1
-  isEngaged: 0
-  deathEffect: {fileID: 1242990457557276, guid: ae01079f3655ea041a3c65ae44623818,
-    type: 2}
-  healthBar: {fileID: 0}
-  isInCamp: 0
 --- !u!23 &1264945928
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13034,7 +12831,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MULTIPLAYER
+  m_Text: MULTIPLAYER (COMING SOON)
 --- !u!222 &1567766531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16139,8 +15936,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116, y: -83.2}
-  m_SizeDelta: {x: 226, y: 49.5}
+  m_AnchoredPosition: {x: 220.92, y: -83.2}
+  m_SizeDelta: {x: 435.83, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043024310
 MonoBehaviour:
@@ -16176,7 +15973,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2043024311}
   m_OnClick:
     m_PersistentCalls:
@@ -16329,7 +16126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244b4bf4146f20459b555e0c568339f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singlePlayer: Level0_Singleplayer
+  singlePlayer: SinglePlayerLobby
   gallery: Gallery
   optionsMenu: OptionsMenu
   sceneFader: {fileID: 1467918846}

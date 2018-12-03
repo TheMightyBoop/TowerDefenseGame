@@ -11,6 +11,10 @@ TagManager:
   - Troop
   - Defense_Player1
   - Defense_Player2
+  - Player 1
+  - Player 2
+  - Camp_Player1
+  - Camp_Player2
   layers:
   - Default
   - TransparentFX

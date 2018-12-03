@@ -12,8 +12,8 @@ public class WaveSpawner : MonoBehaviour {
     public float timeBetweenWaves = 5f;
     private float countdown = 0f;
 
-    public GameManager gameManager;
-    public EnemyMovement enemyMovement;
+    //public GameManager gameManager;
+    //public EnemyMovement enemyMovement;
 
     [HideInInspector]
     public int waveNumber = 0;

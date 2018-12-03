@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour {
     public float speed;
 
     public float startHealth = 100;
-    private float health;
+    [HideInInspector]
+    public float health;
 
     public float range = 15f;
 

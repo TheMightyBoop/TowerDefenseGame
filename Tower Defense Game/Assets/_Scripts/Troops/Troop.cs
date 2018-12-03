@@ -21,6 +21,8 @@ public class Troop : MonoBehaviour {
     public int lives = 1;
 
     public bool isEngaged = false;
+    
+    public string enemyTag = "Enemy";
 
     public GameObject deathEffect;
 

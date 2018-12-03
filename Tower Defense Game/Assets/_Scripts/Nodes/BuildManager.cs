@@ -12,13 +12,13 @@ public class BuildManager : MonoBehaviour {
 
     [Header("Node UI")]
     public NodeUI nodeUI_playerOne;
-    public NodeUI nodeUI_playerTwo;
+    //public NodeUI nodeUI_playerTwo;
     [Header("Defense Shops")]
     public DefenseShop defenseShopUI_playerOne;
-    public DefenseShop defenseShopUI_playerTwo;
+    //public DefenseShop defenseShopUI_playerTwo;
     [Header("Camp Shops")]
     public CampShop campShopUI_playerOne;
-    public CampShop campShopUI_playerTwo;
+    //public CampShop campShopUI_playerTwo;
 
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
@@ -77,7 +77,7 @@ public class BuildManager : MonoBehaviour {
             DeselectNode();
         }
 
-        //PlayerTwo shops
+        /*//PlayerTwo shops
         //Defense
         if (defenseShopUI_playerTwo.gunTurretSelected && PlayerStats.PlayerNumber == 2)
         {
@@ -127,7 +127,7 @@ public class BuildManager : MonoBehaviour {
             selectedNode.BuildTurret(turretToBuild);
             campShopUI_playerTwo.flyingSoldierTowerSelected = false;
             DeselectNode();
-        }
+        }*/
     }
 
     public void SelectNodeUpgrade(Node node)

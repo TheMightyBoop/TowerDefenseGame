@@ -15,19 +15,39 @@ public class TroopMovement : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    private Paths TroopPaths;
+
     Vector3 dir;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         troop = GetComponent<Troop>();
-        target = WaitingArea.point;
         agent.speed = troop.speed;
+        if(troop.CompareTag("Player 1"))
+        {
+            target = PlayerStats.WaitingArea;
+            TroopPaths = PlayerStats.Paths;
+            troop.enemyTag = "Player 2";
+        } else if (troop.CompareTag("Player 2"))
+        {
+            target = EnemyStats.WaitingArea;
+            TroopPaths = EnemyStats.Paths;
+            troop.enemyTag = "Player 1";
+        }
     }
 
     void Update()
     {
-        if (target != null && target == WaitingArea.point)
+        if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp)
+        {
+            Attack();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (target == PlayerStats.WaitingArea || target == EnemyStats.WaitingArea)
         {
             dir = target.position - transform.position;
 
@@ -36,15 +56,10 @@ public class TroopMovement : MonoBehaviour
             CheckInCamp();
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && troop.isInCamp)
-        {
-            Attack();
-        }
-
         troop.speed = troop.startSpeed;
     }
 
-    void MoveTroop()
+    public void MoveTroop()
     {
         agent.isStopped = false;
         agent.SetDestination(target.position);
@@ -60,23 +75,23 @@ public class TroopMovement : MonoBehaviour
 
     void GetNextWayPoint()
     {
-        if (waypointIndex >= Paths.paths[pathIndex].points.Length - 1)
+        if (waypointIndex >= TroopPaths.paths[pathIndex].points.Length - 1)
         {
             EndPath();
             return;
         }
 
         waypointIndex++;
-        target = Paths.paths[pathIndex].points[waypointIndex];
+        target = TroopPaths.paths[pathIndex].points[waypointIndex];
     }
 
     public IEnumerator FollowPoints()
     {
-        target = Paths.paths[pathIndex].points[waypointIndex];
+        target = TroopPaths.paths[pathIndex].points[waypointIndex];
 
         if (PathChecker())
         {
-            for (int i = 0; i < Paths.paths[pathIndex].points.Length; i++)
+            for (int i = 0; i < TroopPaths.paths[pathIndex].points.Length; i++)
             {
                 dir = target.position - transform.position;
 
@@ -91,7 +106,13 @@ public class TroopMovement : MonoBehaviour
 
     void EndPath()
     {
-        PlayerStats.Lives--;
+        if (troop.CompareTag("Player 1"))
+        {
+            EnemyStats.Lives--;
+        } else
+        {
+            PlayerStats.Lives--;
+        }
         Destroy(gameObject);
     }
 
@@ -105,7 +126,14 @@ public class TroopMovement : MonoBehaviour
 
     void GetPath()
     {
-        pathIndex = PlayerStats.PathIndex;
+        if (troop.CompareTag("Player 1"))
+        {
+            pathIndex = PlayerStats.PathIndex;
+        } else
+        {
+            pathIndex = EnemyStats.PathIndex;
+        }
+        
     }
 
     public bool PathChecker()

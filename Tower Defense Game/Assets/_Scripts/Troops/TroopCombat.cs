@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class TroopCombat : MonoBehaviour {
 
     Transform target;
-    Enemy targetEnemy;
+    Troop targetEnemy;
 
     NavMeshAgent agent;
     TroopMovement troopMovement;
@@ -19,19 +19,24 @@ public class TroopCombat : MonoBehaviour {
 
     public event System.Action OnAttack;
 
-    public string enemyTag = "Enemy";
-
     // Use this for initialization
     void Start () {
         agent = GetComponent<NavMeshAgent>();
         troopMovement = GetComponent<TroopMovement>();
         troop = GetComponent<Troop>();
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
 	}
 
     // Update is called once per frame
     void Update() {
+        
+        attackCooldown -= Time.deltaTime;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+	}
+
+    void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(troop.enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -45,17 +50,15 @@ public class TroopCombat : MonoBehaviour {
             }
         }
 
-        attackCooldown -= Time.deltaTime;
-
         if (nearestEnemy != null && shortestDistance <= troop.range)
         {
             target = nearestEnemy.transform;
-            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            targetEnemy = nearestEnemy.GetComponent<Troop>();
 
             troopMovement.enabled = false;
             agent.SetDestination(target.position);
 
-            if (shortestDistance <= agent.stoppingDistance)
+            if (shortestDistance <= agent.stoppingDistance && targetEnemy != null)
             {
                 Troop troop = GetComponent<Troop>();
                 if (troop != null && target != null)
@@ -66,11 +69,14 @@ public class TroopCombat : MonoBehaviour {
                 FaceTarget();
             }
         }
-        else
+        else if (!troop.isInCamp)
         {
+            target = null;
             troopMovement.enabled = true;
+            troopMovement.Attack();
+            return;
         }
-	}
+    }
 
     void FaceTarget()
     {
@@ -79,7 +85,7 @@ public class TroopCombat : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    public void Attack(Enemy enemyStats)
+    public void Attack(Troop enemyStats)
     {
         if (attackCooldown <= 0f)
         {
@@ -93,10 +99,9 @@ public class TroopCombat : MonoBehaviour {
 
     }
 
-    IEnumerator DoDamage(Enemy stats, float delay)
+    IEnumerator DoDamage(Troop stats, float delay)
     {
         yield return new WaitForSeconds(delay);
-
         stats.TakeDamage(troop.damage);
     }
 }

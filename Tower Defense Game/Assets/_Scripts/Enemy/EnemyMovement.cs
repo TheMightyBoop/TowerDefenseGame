@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour {
     
     public int waypointIndex = 0;
 
-    private Enemy enemy;
+    private Troop enemy;
 
     private NavMeshAgent agent;
 
@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour {
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        enemy = GetComponent<Enemy>();
+        enemy = GetComponent<Troop>();
         target = EnemyWaypoints.points[waypointIndex];
         agent.speed = enemy.speed;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour {
 
     private Transform target;
-    private Enemy targetEnemy;
+    private Troop targetEnemy;
 
     [Header("General")]
 
@@ -40,6 +40,13 @@ public class Turret : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        if(this.CompareTag("Player 1"))
+        {
+            enemyTag = "Player 2";
+        } else
+        {
+            enemyTag = "Player 1";
+        }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 	}
 
@@ -62,7 +69,7 @@ public class Turret : MonoBehaviour {
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
-            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            targetEnemy = nearestEnemy.GetComponent<Troop>();
         } else
         {
             target = null;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Paths : MonoBehaviour {
 
-    public static TroopWaypoints[] paths;
+    public TroopWaypoints[] paths;
 
     void Awake()
     {

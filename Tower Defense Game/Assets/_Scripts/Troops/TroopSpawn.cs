@@ -17,7 +17,7 @@ public class TroopSpawn : MonoBehaviour {
         {
             StopCoroutine(SpawnTroop(troop));
         }
-        else
+        else if (GameManager.GameIsStarted == true)
         {
             while (cooldown <= 0f)
             {
@@ -30,11 +30,17 @@ public class TroopSpawn : MonoBehaviour {
             cooldown = Mathf.Clamp(cooldown, 0f, Mathf.Infinity);
         }
     }
-    
 
 	IEnumerator SpawnTroop(GameObject troop)
     {
         Instantiate(troop, spawnPoint.position, spawnPoint.rotation);
+        if(this.CompareTag("Player 1"))
+        {
+            troop.tag = "Player 1";
+        } else
+        {
+            troop.tag = "Player 2";
+        }
         yield return new WaitForSeconds(1f / rate);
     }
 }

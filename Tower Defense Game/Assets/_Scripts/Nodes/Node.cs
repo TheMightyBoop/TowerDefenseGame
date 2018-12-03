@@ -53,7 +53,7 @@ public class Node : MonoBehaviour {
         {
             buildManager.SelectDefenseNodeShop(this);
             BuildTurret(buildManager.GetTurretToBuild());
-        } else if (turret == null && this.CompareTag("Camp"))
+        } else if (turret == null && this.CompareTag("Camp_Player1"))
         {
             buildManager.SelectCampNodeShop(this);
             BuildTurret(buildManager.GetTurretToBuild());
@@ -77,6 +77,15 @@ public class Node : MonoBehaviour {
 
         GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
+
+        //Change turret tag
+        if (this.CompareTag("Defense_Player1") || this.CompareTag("Camp_Player1"))
+        {
+            turret.tag = "Player 1";
+        } else
+        {
+            turret.tag = "Player 2";
+        }
 
         turretBlueprint = blueprint;
 
@@ -103,6 +112,51 @@ public class Node : MonoBehaviour {
 
         GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
+
+        //Change turret tag
+        if (this.CompareTag("Defense_Player1") || this.CompareTag("Camp_Player1"))
+        {
+            turret.tag = "Player 1";
+        }
+        else
+        {
+            turret.tag = "Player 2";
+        }
+
+        isUpgraded = true;
+
+        Debug.Log("Turret Upgraded");
+    }
+
+    public void SpecUpgradeTurret()
+    {
+        if (PlayerStats.Money < (turretBlueprint.specUpgradeCost))
+        {
+            Debug.Log("Not enough");
+            return;
+        }
+
+        PlayerStats.Money -= turretBlueprint.specUpgradeCost;
+
+        //Destroy old turret
+        Destroy(turret);
+
+        //Build new turret
+        GameObject _turret = (GameObject)Instantiate(turretBlueprint.specUpgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        //Change turret tag
+        if (this.CompareTag("Defense_Player1") || this.CompareTag("Camp_Player1"))
+        {
+            turret.tag = "Player 1";
+        }
+        else
+        {
+            turret.tag = "Player 2";
+        }
 
         isUpgraded = true;
 

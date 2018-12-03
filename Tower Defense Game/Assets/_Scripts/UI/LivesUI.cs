@@ -6,9 +6,17 @@ using UnityEngine.UI;
 public class LivesUI : MonoBehaviour {
 
     public Text livesText;
-	
+    public bool enemy;
+    public bool player;
+
 	// Update is called once per frame
 	void Update () {
-        livesText.text = PlayerStats.Lives + " LIVES";
+        if (enemy == true)
+        {
+            livesText.text = EnemyStats.Lives + " LIVES";
+        } else if (player == true)
+        {
+            livesText.text = PlayerStats.Lives + " LIVES";
+        }
 	}
 }
