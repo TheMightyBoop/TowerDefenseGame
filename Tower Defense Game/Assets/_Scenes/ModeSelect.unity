@@ -4326,7 +4326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTIONS (COMING SOON)
+  m_Text: OPTIONS
 --- !u!222 &480705938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7643,6 +7643,11 @@ Prefab:
       propertyPath: m_Name
       value: Dirt Node (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114907365249946816, guid: 7067bca404cf0df4ea8742d77fb8cccd,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7067bca404cf0df4ea8742d77fb8cccd, type: 2}
   m_IsPrefabAsset: 0
@@ -8373,8 +8378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 186.03, y: -195.2}
-  m_SizeDelta: {x: 367.66, y: 49.5}
+  m_AnchoredPosition: {x: 76.07501, y: -195.2}
+  m_SizeDelta: {x: 147.74, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980608013
 MonoBehaviour:
@@ -8410,11 +8415,22 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 980608014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2111960986}
+        m_MethodName: Options
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &980608014
@@ -13031,6 +13047,11 @@ Prefab:
       propertyPath: m_Name
       value: Dirt Node (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114907365249946816, guid: 7067bca404cf0df4ea8742d77fb8cccd,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7067bca404cf0df4ea8742d77fb8cccd, type: 2}
   m_IsPrefabAsset: 0
@@ -13108,6 +13129,11 @@ Prefab:
     - target: {fileID: 4753959432847742, guid: 7067bca404cf0df4ea8742d77fb8cccd, type: 2}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114907365249946816, guid: 7067bca404cf0df4ea8742d77fb8cccd,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7067bca404cf0df4ea8742d77fb8cccd, type: 2}
